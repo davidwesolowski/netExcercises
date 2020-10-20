@@ -79,7 +79,6 @@ namespace demo.Tools
             return View("Result");
         }
 
-
         [Route("long-action")]
         public async Task<List<int>> LongAction(CancellationToken cancel) {
             Task<List<int>> task = Task.Run(() => createPrimeInts(10000, cancel));
@@ -89,7 +88,6 @@ namespace demo.Tools
 
         private List<int> createPrimeInts(int limit, CancellationToken cancel) {
             List<int> resp = new List<int>();
-
             try {
                 for(int v = 2; resp.Count<limit; v++) {
                     bool notPrime = false;
