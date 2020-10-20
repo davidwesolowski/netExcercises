@@ -79,27 +79,43 @@ namespace demo.Tools
             return View("Result");
         }
 
+//await Task.Delay(10_000, cancel);
+            // List<int> res = await Task<List<int>>.Factory.StartNew(() => createPrimeInts(100000), cancel);
+            // res.ForEach(result => System.Console.WriteLine(result));
+            // TaskFactory factory = new TaskFactory(cancel);
+            // await factory.StartNew(() => createPrimeInts(100000));
+
 
         [Route("long-action")]
-        public async Task<string> LongAction(CancellationToken cancel) {
-            await Task.Delay(10_000, cancel);
-
-            return "Finished";
+        public async Task<List<int>> LongAction(CancellationToken cancel) {
+            Task<List<int>> task = Task.Run(() => createPrimeInts(10000, cancel));
+            List<int> result = await task;
+            return result;
         }
 
-        private List<int> createPrimeInts(int limit) {
+        private List<int> createPrimeInts(int limit, CancellationToken cancel) {
             List<int> resp = new List<int>();
-            for(int v = 2; resp.Count<limit; v++) {
-                bool notPrime = false;
-                for(int d=2; d<v-1; d++) {
-                    if(v % d == 0) {
-                        d = v;
-                        notPrime = true;
+
+            try {
+                for(int v = 2; resp.Count<limit; v++) {
+                    bool notPrime = false;
+                    for(int d=2; d<v-1; d++) {
+                        if(v % d == 0) {
+                            d = v;
+                            notPrime = true;
+                        }
+                        if (cancel.IsCancellationRequested)
+                        {
+                            cancel.ThrowIfCancellationRequested();
+                        }
+                    }
+                    if(!notPrime) {
+                        resp.Add(v);
                     }
                 }
-                if(!notPrime) {
-                    resp.Add(v);
-                }
+            }
+            catch (System.OperationCanceledException) {
+                System.Console.WriteLine("@@@@@@@@  Cancelled createPrimeInts task @@@@@@@@@");
             }
             return resp;
         }
