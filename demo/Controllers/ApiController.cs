@@ -14,16 +14,16 @@ namespace demo.Controllers.V1
     }
 }
 
-namespace demo.Controllers.V2
-{
-    [ApiController]
-    [Route("api")]
-    [ApiVersion("2.0")]
-    public class ApiController : ControllerBase {
+// namespace demo.Controllers.V2
+// {
+//     [ApiController]
+//     [Route("api")]
+//     [ApiVersion("2.0")]
+//     public class ApiController : ControllerBase {
         
-        [HttpGet("test")]
-        public string getVersion() {
-            return "Ver 2.0";
-        }
-    }
-}
+//         [HttpGet("test")]
+//         public string getVersion() {
+//             return "Ver 2.0";
+//         }
+//     }
+// }

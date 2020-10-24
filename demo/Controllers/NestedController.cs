@@ -13,7 +13,7 @@ namespace demo.Controllers
         [Tools.ControllerName("NestedFifthController")]       // adnotacja zmieniająca konwencję 
         public class SecondController {
 
-            [ActionName("Reksio")]
+            [ActionName("Reksio2")]
             public string Index() {
                 return "Zgadnij jaki jest mój adres";       // url -> 
             }

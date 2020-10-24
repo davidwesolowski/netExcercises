@@ -14,6 +14,7 @@ namespace demo.Tools
 
         // mechanizmy wiązania wartości (binding) -> email (ze wskazanego miejsca) -> transformacja wartości (string) na dany typ (prymytiwy, enumeracje, ...)
         
+        [HttpGet]
         [Route("form-value-provider")]
         [ActionName("formvalue")]
         public IActionResult TestFormValueBinding() {
@@ -28,7 +29,7 @@ namespace demo.Tools
             return View("Result");
         }
 
-
+        [HttpGet]
         [Route("route-value-provider/{id}")]        // route -> http:/asdfasd/kontroler/akcja/wartosc
         public IActionResult TestRouteValueBinding([FromRoute] string id) {
             ViewData["type"] = "FromRoute";
@@ -36,6 +37,7 @@ namespace demo.Tools
             return View("Result");
         }
 
+        [HttpGet]
         [Route("query-value-provider")] // query -> http://asdfasdf/kontroler/akcja?par1=wartosc1
         public IActionResult TestQueryValueBinding([FromQuery] string email) {
             ViewData["type"] = "FromQuery";
@@ -43,6 +45,7 @@ namespace demo.Tools
             return View("Result");
         }
 
+        [HttpGet]
         [Route("header-value-provider")]
         public IActionResult TestHeaderValueBinding([FromHeader] string email) {
             ViewData["type"] = "FromHeader";
@@ -50,6 +53,7 @@ namespace demo.Tools
             return View("Result");
         }
 
+        [HttpGet]
         [Route("di-provider")]
         public IActionResult TestDependencyInjection([FromServices] IHttpContextAccessor accessor) {
             ViewData["type"] = "FromServices";
@@ -65,6 +69,7 @@ namespace demo.Tools
             return View("Result");
         }
 
+        [HttpGet]
         [Route("binder-tester")]
         public IActionResult TestBindingModel(BinderTester tester) {
             ViewData["type"] = "Binder-tester";
@@ -72,6 +77,7 @@ namespace demo.Tools
             return View("Result");
         }
 
+        [HttpGet]
         [Route("binder-tester-2")]
         public IActionResult TestBindingAction([Bind("Email, Id")] BinderTester tester) {   // FromQuery / FromForm / FromBody
             ViewData["type"] = "Binder-tester";
@@ -80,6 +86,7 @@ namespace demo.Tools
         }
 
 
+        [HttpGet]
         [Route("long-action")]
         public async Task<string> LongAction(CancellationToken cancel) {
             await Task.Delay(10_000, cancel);

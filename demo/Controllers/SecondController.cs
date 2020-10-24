@@ -28,8 +28,9 @@ namespace demo.Controllers {
 
         //[ViewDataDictionary]
         //public ViewDataDictionary ViewBag { get; set; }
-        
 
+
+        [HttpGet]
         [ActionName("Reksio")]
         public IActionResult Index() {
             this.Url = this.Url ?? this._url.GetUrlHelper(this.ActionContext);
@@ -39,10 +40,10 @@ namespace demo.Controllers {
             
         }
 
-        [ActionName("Index")]
-        public IActionResult Reksio() {
-            // return "Akcja Reksio - nazywana Index - w kontrolerze Ciasteczka";
-            return View();
-        }
+        // [ActionName("Index")]
+        // public IActionResult Reksio() {
+        //     return "Akcja Reksio - nazywana Index - w kontrolerze Ciasteczka";
+        //     return View();
+        // }
     }
 }

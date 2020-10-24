@@ -14,6 +14,10 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using Microsoft.OpenApi.Models;
 
 namespace demo
 {
@@ -35,7 +39,7 @@ namespace demo
             services.AddControllers().AddXmlSerializerFormatters();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            // services.AddSingleton<IActionSelector, CustomActionSelector>();
+            services.AddSingleton<IActionSelector, CustomActionSelector>();
 
             services.Configure<RouteOptions>(options => {
                 options.ConstraintMap.Add("primeint", typeof(MyRouteConstraint));
@@ -56,17 +60,19 @@ namespace demo
                 // options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(2, 0);
             });
 
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Demo API",
+                    Description = "Demo API .net core"
+                }
+            ); });
+
             // cache odpowiedzi
             services.AddResponseCaching(options => {
                 options.MaximumBodySize *= 2;
                 options.UseCaseSensitivePaths = true;
             });
-
-            /*
-            services.AddSwaggerGen( c => {
-                c.SwaggerDoc("v1");
-            }); 
-            */
             
         }
 
@@ -86,27 +92,36 @@ namespace demo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+               // odcinal ze wzgleud na uprawnienia
+
+            //app.UseResponseCaching();   // Dominik Kubiaczyk, Mateusz buchajewicz
+
+            app.UseSwagger(c => {
+                c.RouteTemplate = "/swagger/{documentName}/swagger.json";
+                //c.SerializeAsV2 = true;
+            });
+
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("v1/swagger.json", "SI.NET API v1");
+                //options.RoutePrefix = string.Empty;
+            });
+
             app.UseRouting();
 
             app.UseResponseCaching(); // Hubert, lukasz mrugala, patryk poblocki, Dawid Wesołowski
 
-            app.UseAuthorization();     // odcinal ze wzgleud na uprawnienia
-
-            // app.UseResponseCaching();   // Dominik Kubiaczyk, Mateusz buchajewicz
+            app.UseAuthorization();  
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 
             });
-
-            /*
-            app.UseSwagger();
-            app.UseSwaggerUI(options => {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "SI.NET API v1");
-            }); */
+            
         }
     }
 }
