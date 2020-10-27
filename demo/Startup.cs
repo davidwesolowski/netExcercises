@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using demo.Models;
@@ -8,12 +9,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace demo
 {
@@ -47,7 +51,11 @@ namespace demo
                 options.CacheProfiles.Add("si.net", new Microsoft.AspNetCore.Mvc.CacheProfile {
                     Duration = 60
                 });
-            });
+            })
+            .AddMvcLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
+            .AddViewLocalization()
+            .AddDataAnnotationsLocalization()
+            ;
 
             services.AddApiVersioning(options => {
                 options.ReportApiVersions = true;
@@ -67,6 +75,45 @@ namespace demo
                 c.SwaggerDoc("v1");
             }); 
             */
+
+            services.AddDistributedSqlServerCache(options => {
+                options.ConnectionString = @"Data Source=localhost;Initial Catalog=DistCache;User Id=sa; Password=STRONGpassword123;";
+                options.SchemaName = "dbo";
+                options.TableName = "TestCache";
+
+            });
+
+            services.AddSession();
+
+            // services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+            // services.AddSingleton<ITempDataProvider, SessionStateTempDataProvider>();
+
+            // .resx
+            services.AddLocalization(options => {
+                options.ResourcesPath = "Resources";    // gdzie bedziemy trzymac slowniki
+            });
+
+            // ISO - narodowości
+            // pl_PL -> polski, w dialekcie polskim narodowym
+            //  
+
+            var supportedCutltures = new List<CultureInfo> {
+                new CultureInfo("pl"),
+                new CultureInfo("en")
+            };
+
+            services.Configure<RequestLocalizationOptions>(options => {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(supportedCutltures.First().Name, supportedCutltures.First().Name);
+                options.SupportedCultures = supportedCutltures;
+                options.SupportedUICultures = supportedCutltures;
+                options.RequestCultureProviders = new[] {
+                    new QueryStringRequestCultureProvider {QueryStringKey = "culture", Options = options}
+                };
+            });
+            /*new AcceptLanguageHeaderRequestCultureProvider {
+                        Options = options
+                    } */
+
             
         }
 
@@ -86,11 +133,15 @@ namespace demo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
+
             app.UseRouting();
 
             app.UseResponseCaching(); // Hubert, lukasz mrugala, patryk poblocki, Dawid Wesołowski
 
             app.UseAuthorization();     // odcinal ze wzgleud na uprawnienia
+            app.UseSession();
 
             // app.UseResponseCaching();   // Dominik Kubiaczyk, Mateusz buchajewicz
 

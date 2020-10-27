@@ -14417,6 +14417,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/asobecki/Projects/si.net/demo/Views/Language/CultureTest.cshtml",
+      "TargetPath": "Views\\Language\\CultureTest.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/asobecki/Projects/si.net/demo/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
