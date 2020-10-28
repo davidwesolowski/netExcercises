@@ -14442,6 +14442,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/asobecki/Projects/si.net/demo/Views/Language/RazorTest.cshtml",
+      "TargetPath": "Views\\Language\\RazorTest.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/asobecki/Projects/si.net/demo/Views/Second/Reksio.cshtml",
       "TargetPath": "Views\\Second\\Reksio.cshtml",
       "FileKind": "mvc"
@@ -14457,8 +14462,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/asobecki/Projects/si.net/demo/Views/Language/FormTest.cshtml",
+      "TargetPath": "Views\\Language\\FormTest.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/asobecki/Projects/si.net/demo/Views/_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/asobecki/Projects/si.net/demo/Views/MojLayout/Language/MyLayout.cshtml",
+      "TargetPath": "Views\\MojLayout\\Language\\MyLayout.cshtml",
       "FileKind": "mvc"
     }
   ],

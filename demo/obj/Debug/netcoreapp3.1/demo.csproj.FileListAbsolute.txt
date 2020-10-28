@@ -130,3 +130,7 @@
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/pl/demo.resources.dll
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/demo.Resources.Views.Language.CultureTest.pl.resources
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Language/CultureTest.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Language/FormTest.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/demo.Resources.Domain.Entities.Product.en.resources
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/MojLayout/Language/MyLayout.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Language/RazorTest.cshtml.g.cs

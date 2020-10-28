@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Localization.Routing;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -43,6 +44,7 @@ namespace demo
 
             services.Configure<RouteOptions>(options => {
                 options.ConstraintMap.Add("primeint", typeof(MyRouteConstraint));
+                options.ConstraintMap.Add(CultureSelectRouteConstraint.CultureKey, typeof(CultureSelectRouteConstraint));
             });
 
             services.AddMvc( options => {
@@ -52,10 +54,13 @@ namespace demo
                     Duration = 60
                 });
             })
-            .AddMvcLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
-            .AddViewLocalization()
-            .AddDataAnnotationsLocalization()
-            ;
+            .AddMvcLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)       // .en.resx
+            .AddViewLocalization()  // 
+            .AddDataAnnotationsLocalization()   // 
+            .AddRazorOptions(options => {
+                options.ViewLocationFormats.Add("/ExternalViews/{0}.cshtml");
+                options.ViewLocationExpanders.Add(new ThemesViewLocationExpander("MojLayout"));
+            });
 
             services.AddApiVersioning(options => {
                 options.ReportApiVersions = true;
@@ -100,6 +105,7 @@ namespace demo
             var supportedCutltures = new List<CultureInfo> {
                 new CultureInfo("pl"),
                 new CultureInfo("en")
+                
             };
 
             services.Configure<RequestLocalizationOptions>(options => {
@@ -107,13 +113,21 @@ namespace demo
                 options.SupportedCultures = supportedCutltures;
                 options.SupportedUICultures = supportedCutltures;
                 options.RequestCultureProviders = new[] {
-                    new QueryStringRequestCultureProvider {QueryStringKey = "culture", Options = options}
+                       new QueryStringRequestCultureProvider {QueryStringKey = "culture", Options = options} 
                 };
             });
-            /*new AcceptLanguageHeaderRequestCultureProvider {
-                        Options = options
-                    } */
+            /*
+                
 
+                new AcceptLanguageHeaderRequestCultureProvider {
+                        Options = options
+                    } 
+            */
+
+            
+            /*
+                new RouteDataRequestCultureProvider { RouteDataStringKey = "language" } // poszukać
+            */
             
         }
 

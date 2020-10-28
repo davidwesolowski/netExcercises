@@ -42,9 +42,15 @@
 34. Globalizacja względem trasy (language:culture) -> własny warunek na ścieżkę / Configure<RouteOptions>
 34. Lokalizacja (spróbujmy przetłumaczyć widoki) -> zagadka dlaczego Resources/plik.jezyk.resx nie działa - natomiast działa /Resources/Foldery/plik.jezyk.resx? - przechowanie parametru query między żądaniami
 35. DataAnnotation Localization -> tłumaczenie komunikatów w formularzach (zadanie: z użyciem zasobów wspólnych)
+---
 36. Skąd pochodzą widoki - standardowo: plik cshtml, nazwa pliku identyczna jak nazwa widoku, przechowywane w folderze Views, w podfolderze odpowiadającym nazwie kontrolera, globalne widoki w Views/Shared -> my dodamy własną scieżkę AddRazorOptions -> pokazać możliwość tworzenia spersonalizowanych plików widoków dla języka (akcja bez widoku)
 37. Ekspandery lokalizacji widoków -> AddRazorOptions -> options.ViewLocationExpanders -> własny expander
 38. Podstawy składni Razor pętle/if 
+---
 39. Podstawy diagnostyki aplikacji
 40. Kompilacja widoków / Własne kompilatory widoków
+    1. `dotnet add package Microsoft.AspNetCore.mvc.Razor.ViewCompilation`
+    2. plik csproj -> dodać do PropertyGroup `MvcRazorCompileOnPublish` oraz `PreserveCompilationContext`
+    3. Widoki są prekompilowane podczas publikacji a nie kompilacji tzn. `dotnet publish`
 41. Układy widoków -> Layout, partiale, komponenty 
+42. 

@@ -1,0 +1,58 @@
+<h2>To jest html</h2>
+
+Data: @(DateTime.Today - TimeSpan.FromDays(3))
+
+<div>
+    Encoding html
+    @("<p>Jakiś, tekst</p>")
+</div>
+
+<div>
+    Wyświetlanie RAW -> artykuł -> Word -> HTML (h2, h3, b, i)
+    @Html.Raw("<p><b>Coś tam</b> <i>asdfasdf</i></p>")
+</div>
+
+@{
+    String zmienna = "<p><b>Coś tam</b> <i>asdfasdf</i></p>";
+}
+
+
+<div>
+    Wyświetlanie zmiennej z html bez RAW
+    @zmienna
+</div>
+
+<div>
+    Sekcja
+    @{
+        var liczba = 10;
+        liczba += 2;
+        liczba -= 3;
+    }
+
+    Wynik: @liczba
+</div>
+
+<div>
+    Pętle
+
+    @for (int i = 1; i < 10; i++) {
+        <p>Aktywni studenci na SI.NET nr indeksu: @i</p>
+    }
+</div>
+
+<div>
+    <b>try/catch</b>
+    @try {
+        var wynik = 2+2;
+    } catch(Exception ex) {
+        <p>Pewien błąd @ex.Message</p>
+    }
+</div>
+
+@* komentarz jednolinijkowy *@
+@*
+    to jest komentarz wielolinijkowy
+
+*@
+

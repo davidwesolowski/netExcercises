@@ -26,6 +26,7 @@ namespace demo.Domain.Entities
 
     [StringLength(100)]
     [Required(ErrorMessage = "Brakuje nazwy")]
+    [Display(Name = "Nazwa produktu")]
     [DataMember]
     public String Name {get; set;}
 
