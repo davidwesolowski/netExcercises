@@ -103,21 +103,23 @@ namespace demo
             //  
 
             var supportedCutltures = new List<CultureInfo> {
+                new CultureInfo("en"),
                 new CultureInfo("pl"),
-                new CultureInfo("en")
-                
             };
 
             services.Configure<RequestLocalizationOptions>(options => {
                 options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(supportedCutltures.First().Name, supportedCutltures.First().Name);
                 options.SupportedCultures = supportedCutltures;
                 options.SupportedUICultures = supportedCutltures;
+                options.FallBackToParentCultures = false;
+                options.FallBackToParentUICultures = false;
                 options.RequestCultureProviders = new[] {
-                       new QueryStringRequestCultureProvider {QueryStringKey = "culture", Options = options} 
+                    //    new RouteDataRequestCultureProvider { RouteDataStringKey = "language", Options = options } 
+                    new QueryStringRequestCultureProvider {QueryStringKey = "culture", Options = options} 
                 };
             });
             /*
-                
+                new QueryStringRequestCultureProvider {QueryStringKey = "culture", Options = options} 
 
                 new AcceptLanguageHeaderRequestCultureProvider {
                         Options = options
@@ -147,9 +149,6 @@ namespace demo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            app.UseRequestLocalization(options.Value);
-
             app.UseRouting();
 
             app.UseResponseCaching(); // Hubert, lukasz mrugala, patryk poblocki, Dawid Wesołowski
@@ -158,6 +157,9 @@ namespace demo
             app.UseSession();
 
             // app.UseResponseCaching();   // Dominik Kubiaczyk, Mateusz buchajewicz
+
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
 
             app.UseEndpoints(endpoints =>
             {

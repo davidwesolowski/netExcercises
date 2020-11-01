@@ -22,8 +22,15 @@ namespace demo.Controllers
         }
 
         [HttpPost("test")]
-        public IActionResult CultureTestPost() {
-            return RedirectToAction("CultureTest");
+        public IActionResult CultureTestPost(String culture) {
+            return RedirectToAction("CultureTest", new {
+                culture = culture
+            });
+        }
+
+        [HttpGet("other-check")]
+        public IActionResult CultureTestRoute2() {
+            return View("CultureTest");
         }
 
         [HttpGet("other-check/{language:language}")]

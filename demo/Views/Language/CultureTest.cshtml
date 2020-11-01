@@ -1,12 +1,13 @@
 @using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc
 @inject IViewLocalizer Localizer
 
 
 <h2>@Localizer["SI.NET"]</h2>
 
-
-<form asp-action="CultureTestPost" method="POST">
+<form asp-action="CultureTestPost" asp-route-culture="@(Context.Request.Query["culture"])" asp-method="POST">
     <input type="text" name="cokolwiek"/>
+    
 
     <input type="submit"/>
 </form>
