@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    
+</head>
+<body>
+
+@if (IsSectionDefined("TopSection"))
+{
+    @RenderSection("TopSection")    
+}
+else
+{
+    Html.RenderPartial("../Template/_DefaultTopSection.cshtml", new { JakasWartosc = "To jest jakas wartosc" });
+}
+
+
+@RenderBody()
+
+
+@if (IsSectionDefined("FooterSection"))
+{
+    @RenderSection("FooterSection")
+}
+else
+{
+    Html.RenderPartial("_DefaultFooterSection");
+}
+
+</body>
+</html>

@@ -1,8 +1,28 @@
-﻿@{
+﻿@using Microsoft.Extensions.Logging
+
+@inject ILogger<Index> Logger
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@{
+    DiagnosticSource.Write("MyEventType", new { data = "Pewna wiadomość"});
+    Logger.LogDebug("Jakiś komunikat");
+    Logger.LogCritical("Pewna wiadomość");
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        // to jest komentarz w JS
+    </script>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome 2</h1>
+    <p>Learn about asdfasdfsadf <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "an+XKcS3wnGOgY+V93Ogi4A7X116uEHhPsdWyNaGmvSAAprp4PNBQ8Kmo695fJ28WZKYRu2/ajqAutxo3keG1A==",
+  "dgSpecHash": "8wODSh+48B/STkgPFlhymoEYRKurEqeWIQ9yA5njDQppUdCSBsjLudjeY0W7xHn4Tfpowsq4zahMV5A83P0H4w==",
   "success": true,
   "projectFilePath": "/Users/asobecki/Projects/si.net/demo/demo.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,7 @@
     "/Users/asobecki/.nuget/packages/microsoft.extensions.dependencyinjection/2.2.0/microsoft.extensions.dependencyinjection.2.2.0.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/3.1.9/microsoft.extensions.dependencyinjection.abstractions.3.1.9.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/microsoft.extensions.dependencymodel/2.1.0/microsoft.extensions.dependencymodel.2.1.0.nupkg.sha512",
+    "/Users/asobecki/.nuget/packages/microsoft.extensions.diagnosticadapter/3.1.9/microsoft.extensions.diagnosticadapter.3.1.9.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/microsoft.extensions.fileproviders.abstractions/2.2.0/microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/microsoft.extensions.hosting.abstractions/2.2.0/microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/microsoft.extensions.localization/3.1.9/microsoft.extensions.localization.3.1.9.nupkg.sha512",
@@ -69,7 +70,7 @@
     "/Users/asobecki/.nuget/packages/system.componentmodel.typeconverter/4.3.0/system.componentmodel.typeconverter.4.3.0.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/system.configuration.configurationmanager/4.5.0/system.configuration.configurationmanager.4.5.0.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/system.diagnostics.debug/4.3.0/system.diagnostics.debug.4.3.0.nupkg.sha512",
-    "/Users/asobecki/.nuget/packages/system.diagnostics.diagnosticsource/4.5.0/system.diagnostics.diagnosticsource.4.5.0.nupkg.sha512",
+    "/Users/asobecki/.nuget/packages/system.diagnostics.diagnosticsource/4.7.1/system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/system.diagnostics.tools/4.3.0/system.diagnostics.tools.4.3.0.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/system.diagnostics.tracing/4.3.0/system.diagnostics.tracing.4.3.0.nupkg.sha512",
     "/Users/asobecki/.nuget/packages/system.dynamic.runtime/4.0.11/system.dynamic.runtime.4.0.11.nupkg.sha512",

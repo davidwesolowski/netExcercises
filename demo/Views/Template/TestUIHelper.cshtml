@@ -1,0 +1,18 @@
+@model demo.Domain.UserProfile
+
+@{
+    ViewBag.Title = "Test UI Helperów";
+    Layout = "_Layout2";
+}
+
+<h2>Test UI Helperów</h2>
+
+<div>
+    Szablon wyświetlania obiektu
+    @Html.DisplayFor(x => x.UserData)
+</div>
+<hr/>
+<div>
+    Szablon edycji obiektu
+    @Html.EditorFor(x => x.UserData)
+</div>

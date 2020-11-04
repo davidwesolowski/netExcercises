@@ -134,3 +134,15 @@
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/demo.Resources.Domain.Entities.Product.en.resources
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/MojLayout/Language/MyLayout.cshtml.g.cs
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Language/RazorTest.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DiagnosticAdapter.dll
+/Users/asobecki/Projects/si.net/demo/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_Layout2.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Template/Index.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_DefaultFooterSection.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Template/WithLayout.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Template/_DefaultTopSection.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Template/_InnyPartial.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Template/TestHtmlHelper.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Template/TestUIHelper.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Shared/DisplayTemplates/UserCard.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Shared/EditorTemplates/UserCard.cshtml.g.cs

@@ -47,10 +47,52 @@
 37. Ekspandery lokalizacji widoków -> AddRazorOptions -> options.ViewLocationExpanders -> własny expander
 38. Podstawy składni Razor pętle/if 
 ---
-39. Podstawy diagnostyki aplikacji
-40. Kompilacja widoków / Własne kompilatory widoków
-    1. `dotnet add package Microsoft.AspNetCore.mvc.Razor.ViewCompilation`
-    2. plik csproj -> dodać do PropertyGroup `MvcRazorCompileOnPublish` oraz `PreserveCompilationContext`
-    3. Widoki są prekompilowane podczas publikacji a nie kompilacji tzn. `dotnet publish`
-41. Układy widoków -> Layout, partiale, komponenty 
-42. 
+39. Podstawy diagnostyki aplikacji (co robi ConfigureWebHostDefaults)
+    1. Wstrzyknięcie ILogger<Typ> Logger do widoku
+    2. Dodanie komunikatu diagnostycznego `@{ DiagnosticSource.Write(...) }`
+    3. Przygotowanie do utworzenia adaptera (klasy przechwytującej) -> instalacja `Microsoft.Extensions.DiagnosticAdapter`
+    4. Przygotowanie klasy przechwytującej zdarzenie `CustomDiagnosticAdapter`
+    5. Rejestracja utworzonej klasy adaptera jako subskrybenta dla listenera eventów (funkcja Configure)
+    6. Wymaga rozszerzenia nagłówka funkcji Configure (3 opcja)
+    7. Istnieją domyślne elementy diagnostyczne np. `Microsoft.AspNetCore.Diagnostics.HandledException`, `Microsoft AspNetCore.Mvc.BeforeAction`
+41. Układy widoków
+    1. Wybór Layout'u (albo na widoku, albo dla grupy widoków)        
+    2. Sposób tworzenia Layout'u
+        1. Utworzenie nowego kontrolera
+        2. Utworzenie nowego layaotu 
+        3. prezentacja domyślnej konstrukcji Layoutu
+        4. dodanie sekcji i prezentacja ich działania
+        5. dodanie nowej akcji i widoku bez sekcji (obseracja zachowania)
+        6. Modyfikacja sekcji (required)
+        7. Rozbudowanie layoutu o sprawdzanie czy sekcja została zdefiniowana i wykorzystanie partiali
+        8. Różne sposoby wywołania partiali (sama nazwa, z suffixem cshtml, z ukośnikiem z przodu wtedy względem głównego folderu projektu, z ../ przodu wtedy względem folderu wywołującego widoku)
+    3. Pliki specjalne do sterowania widokami
+        1. _ViewImports.cshtml - wszelkie dyrektywy @using i @inject - globalne dla widoków
+        2. _ViewStart.cshtml - kod wspólny dla wszystkich widoków (może być override przez widoki)        
+    3. Czym są partiale, 
+    4. Pomocnicy HTML (IHtmlHelper): dwa przeciążenia: EditorFor(x => x.Pole) lub EditorFor("Pole")
+    5. Własny pomocnik HTML
+    6. Partiale i [UIHint] -> `/Views/Shared/DisplayTemplates` - szablony wyświetlania lub `/Views/<ControllerName>/DisplayTemplates`
+    7. Partiale i szablony edytorów -> `..../EditorTemplates`
+---
+42. Komponenty widoków
+43. Bezpieczeństwo aplikacji
+--- 
+44. Filtry
+---
+45. EntityFramework
+46. DBContext
+47. Db-first / Code-first
+48. Migracje
+49. Inicjalizacja danych + Linq
+---
+50. Zaawansaowana diagnostyka aplikacji
+51. Usługi gRPC
+---
+51. Wdrażanie aplikacji (docker/docker-compose/kubernetes)
+52. Poprawa wydajności 
+---
+53. Blazor
+54. MediatR
+---
+53. Kolokwium

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -81,12 +82,13 @@ namespace demo
             }); 
             */
 
+            /*
             services.AddDistributedSqlServerCache(options => {
                 options.ConnectionString = @"Data Source=localhost;Initial Catalog=DistCache;User Id=sa; Password=STRONGpassword123;";
                 options.SchemaName = "dbo";
                 options.TableName = "TestCache";
 
-            });
+            });*/
 
             services.AddSession();
 
@@ -132,8 +134,11 @@ namespace demo
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DiagnosticListener diagnosticListener)
         {
+            var adapter = new CustomDiagnosticAdapter();
+            diagnosticListener.SubscribeWithAdapter(adapter);
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();  // stacktrace

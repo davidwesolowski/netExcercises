@@ -1,0 +1,35 @@
+@using demo.Tools
+@model demo.Domain.ExampleFormViewModel
+@{
+    ViewBag.Title = "Testy HTML Helperów";
+    Layout = "_Layout2";
+}
+
+<h2>Formularz z użyciem HTmlHelperów</h2>
+
+@using (Html.BeginForm("TestHtmlHelperSubmit", "Template", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(x => x.Form.Name)
+        @Html.TextBoxFor(x => x.Form.Name)
+    </div>
+    
+    <div>
+        @Html.LabelFor(x => x.Form.Surname)
+        @Html.TextBoxFor(x => x.Form.Surname)
+    </div>
+    
+    <div>
+        @Html.LabelFor(x => x.Form.Description)
+        @Html.TextAreaFor(x => x.Form.Description)
+    </div>
+    
+    <div>
+        @Html.LabelFor(x => x.Form.Country)
+        @Html.DropDownListFor(x => x.Form.Country, Model.Countries)
+    </div>
+    
+    <!-- <input type="submit"/> -->
+    @Html.SubmitButton("Wyślij");                            
+}
+
