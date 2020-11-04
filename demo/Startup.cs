@@ -35,7 +35,27 @@ namespace demo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(); /*.AddViewOptions(options =>
+            {
+                // tutaj mozemy ustawić listę walidatorów klienckich
+                // zachowanie htmlHelperow 
+                // tutaj możemy ustawiać:
+                // ClientValidationEnabled - czy walidacja po stronie klienta jest dopuszczalna;
+                // jak html5 renderuje date i godzine (stand. zgodnie z RFC3339)
+                // sposób zamiany kropki na widokach;
+                // domyslny element html uzywany do prezentowania komunikatow walidacyjnych (domyślnie jest span)
+                // domyslny element html uzywany do prezentowanie podsumowania walidacyjnego (domślnie jest span)
+                // silniki widoków
+            }).AddRazorOptions(options =>
+            {
+                // dodatkowe komponenty assembly, z ktorych moga byc ladowanie komponenty - AdditionalComponents
+                // AreaViewLocationFormats - z jakich folderów w ramach obszarów mają być wybierane widoki
+                // CompilationCallback - metoda zwrotna wywoływana po skompilowaniu każdego elementu
+                // CompilationOptions - opcje kompilacji C#
+                // FileProviders - dostawcy plików (domyślnie tylko pliki fizyczne PhysicalFileProvider)
+                // ViewLocationExpanders - ekspandery lokalizacji widoków
+                // ViewLocationFormats - lokalizacje wyszukiwania widoków
+            });*/
             
             services.AddControllers().AddNewtonsoftJson();
             services.AddControllers().AddXmlSerializerFormatters();
