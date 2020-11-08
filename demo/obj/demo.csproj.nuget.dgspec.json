@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/asobecki/Projects/si.net/demo/demo.csproj": {}
+    "D:\\Users\\Dawid\\Desktop\\NET\\zagadki\\si.net3\\demo\\demo.csproj": {}
   },
   "projects": {
-    "/Users/asobecki/Projects/si.net/demo/demo.csproj": {
+    "D:\\Users\\Dawid\\Desktop\\NET\\zagadki\\si.net3\\demo\\demo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/asobecki/Projects/si.net/demo/demo.csproj",
+        "projectUniqueName": "D:\\Users\\Dawid\\Desktop\\NET\\zagadki\\si.net3\\demo\\demo.csproj",
         "projectName": "demo",
-        "projectPath": "/Users/asobecki/Projects/si.net/demo/demo.csproj",
-        "packagesPath": "/Users/asobecki/.nuget/packages/",
-        "outputPath": "/Users/asobecki/Projects/si.net/demo/obj/",
+        "projectPath": "D:\\Users\\Dawid\\Desktop\\NET\\zagadki\\si.net3\\demo\\demo.csproj",
+        "packagesPath": "C:\\Users\\Dawid\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\Dawid\\Desktop\\NET\\zagadki\\si.net3\\demo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/asobecki/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Dawid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -102,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

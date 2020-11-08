@@ -1,16 +1,29 @@
+@using demo.Tools;
 @model demo.Domain.UserData
 
-<div>
-    @Html.LabelFor(x => x.Name)
-    @Html.TextBoxFor(x => x.Name)
-</div>
-    
-<div>
-    @Html.LabelFor(x => x.Surname)
-    @Html.TextBoxFor(x => x.Surname)
-</div>
-    
-<div>
-    @Html.LabelFor(x => x.Description)
-    @Html.TextAreaFor(x => x.Description)
-</div>
+@using (Html.BeginForm("TestUIHelperSubmit", "Template", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+        
+    <div>
+        @Html.LabelFor(x => x.Surname)
+        @Html.TextBoxFor(x => x.Surname)
+    </div>
+        
+    <div>
+        @Html.LabelFor(x => x.Description)
+        @Html.TextAreaFor(x => x.Description)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Country)
+        @Html.DropDownListFor(x => x.Country, Model.Countries)
+    </div>
+
+    <div>
+        @Html.SubmitButton("Edytuj")
+    </div>
+}

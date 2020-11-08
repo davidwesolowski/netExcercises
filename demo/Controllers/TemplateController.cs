@@ -41,6 +41,12 @@ namespace demo.Controllers
         }
 
         [Route("ui-helper")]
+        [HttpPost]
+        public IActionResult TestUIHelperSubmit() {
+            return RedirectToAction(nameof(TestUIHelper));
+        }
+
+        [Route("ui-helper")]
         public IActionResult TestUIHelper()
         {
             UserProfile profile = new UserProfile();
@@ -48,6 +54,7 @@ namespace demo.Controllers
             profile.UserData.Description = "Przykładowy opis";
             profile.UserData.Name = "Nazwa";
             profile.UserData.Surname = "Nazwisko";
+            profile.UserData.Country = "Kraj";
             
             return View(profile);
         }
