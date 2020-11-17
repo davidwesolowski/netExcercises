@@ -75,8 +75,9 @@
     6. Partiale i [UIHint] -> `/Views/Shared/DisplayTemplates` - szablony wyświetlania lub `/Views/<ControllerName>/DisplayTemplates`
     7. Partiale i szablony edytorów -> `..../EditorTemplates`
 ---
+42. Walidatory
+43. Bezpieczeństwo aplikacji -> Custom, Identity, OAuth, DBContext 
 42. Komponenty widoków
-43. Bezpieczeństwo aplikacji
 --- 
 44. Filtry
 ---

@@ -1,0 +1,34 @@
+@model demo.Domain.SelfValidatableForm
+
+@{
+    ViewBag.Title = "Samodzielnie walidujący się formularz";
+    Layout = "_Layout";
+}
+
+<h2>Samodzielnie walidujący się formularz</h2>
+
+<form method="post"
+      asp-action="SelfValidatableFormAction"
+      class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">
+    
+    <div class="form-group g-mb-25">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" class="form-control rounded-0 form-control-md" />
+        <span asp-validation-for="Id"></span>
+    </div>
+    
+    <div class="form-group g-mb-25">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control rounded-0 form-control-md" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    
+    <div class="form-group g-mb-25">
+        <label asp-for="Balance"></label>
+        <input asp-for="Balance" class="form-control rounded-0 form-control-md" />
+        <span asp-validation-for="Balance"></span>
+    </div>
+    
+    <input type="submit"/>
+    
+</form>

@@ -21,6 +21,7 @@
         <e p="RoutingController.cs" t="Include" />
         <e p="SecondController.cs" t="Include" />
         <e p="TemplateController.cs" t="Include" />
+        <e p="ValidationController.cs" t="Include" />
       </e>
       <e p="demo.csproj" t="IncludeRecursive" />
       <e p="Domain" t="Include">
@@ -30,6 +31,7 @@
         </e>
         <e p="ExampleForm.cs" t="Include" />
         <e p="ExampleFormViewModel.cs" t="Include" />
+        <e p="SelfValidatableForm.cs" t="Include" />
         <e p="UserData.cs" t="Include" />
         <e p="UserProfile.cs" t="Include" />
       </e>
@@ -75,6 +77,7 @@
         <e p="CustomActionSelector.cs" t="Include" />
         <e p="CustomDiagnosticAdapter.cs" t="Include" />
         <e p="CustomHtmlHelper.cs" t="Include" />
+        <e p="CustomValidationMethods.cs" t="Include" />
         <e p="ThemesViewLocationExpander.cs" t="Include" />
       </e>
       <e p="Views" t="Include">
@@ -126,6 +129,10 @@
           <e p="TestHtmlHelper.cshtml" t="Include" />
           <e p="TestUIHelper.cshtml" t="Include" />
           <e p="WithLayout.cshtml" t="Include" />
+        </e>
+        <e p="Validation" t="Include">
+          <e p="Index.cshtml" t="Include" />
+          <e p="SelfValidatableFormAction.cshtml" t="Include" />
         </e>
       </e>
       <e p="wwwroot" t="Include">
