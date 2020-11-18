@@ -1,5 +1,10 @@
 using demo.Domain;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace demo.Controllers
 {
@@ -12,23 +17,51 @@ namespace demo.Controllers
             return View(new ExampleForm());
         }
 
+        // [Route("submit")]
+        // [HttpPost]
+        // public IActionResult Submit(ExampleForm form)
+        // {
+        //     if (!ModelState.IsValid)
+        //     {
+        //         return View(viewName: "Index", form);
+        //     }
+
+        //     if (form.File != null)
+        //     {
+        //         System.Console.WriteLine($"Wielkość pliku {form.File.Length}");
+        //         System.Console.WriteLine($"Nazwa pliku {form.File.Name}");
+        //     }
+        //     // zapis 
+
+        //     return RedirectToAction(nameof(Index));
+        // }
         [Route("submit")]
         [HttpPost]
-        public IActionResult Submit(ExampleForm form)
-        {
+        public IActionResult Submit (ExampleForm form) {
+
             if (!ModelState.IsValid)
             {
                 return View(viewName: "Index", form);
             }
 
-            if (form.File != null)
-            {
-                System.Console.WriteLine($"Wielkość pliku {form.File.Length}");
-                System.Console.WriteLine($"Nazwa pliku {form.File.Name}");
+            if (form.Files != null) {
+                foreach (var file in form.Files)
+                {
+                    Task.Run(() => handleFile(file));
+                }
             }
-            // zapis 
-
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task handleFile(IFormFile file) {
+            if (file.Length > 0) {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Files", file.FileName);
+                System.Console.WriteLine($"Plik {file.FileName}, rozmiar {file.Length}");
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
         }
 
         [Route("self-form")]

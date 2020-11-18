@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using demo.Tools;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace demo.Domain
 {
-    [Bind("Name, Surname, Description, Country, Phone, Email, Age, Password, ConfirmPassword, File")]
+    [Bind("Name, Surname, Description, Country, Phone, Email, Age, Password, ConfirmPassword, Files")]
     public class ExampleForm
     {
         
@@ -48,7 +49,7 @@ namespace demo.Domain
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
         
-        public IFormFile File { get; set; }
+        public List<IFormFile> Files { get; set; }
 
         public override string ToString()
         {
