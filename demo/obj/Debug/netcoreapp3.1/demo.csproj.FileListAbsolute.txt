@@ -146,3 +146,5 @@
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Template/TestUIHelper.cshtml.g.cs
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Shared/DisplayTemplates/UserCard.cshtml.g.cs
 /Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Shared/EditorTemplates/UserCard.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Validation/Index.cshtml.g.cs
+/Users/asobecki/Projects/si.net/demo/obj/Debug/netcoreapp3.1/Razor/Views/Validation/SelfValidatableFormAction.cshtml.g.cs
