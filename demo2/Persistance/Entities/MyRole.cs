@@ -5,17 +5,15 @@ namespace demo2.Persistance.Entities
 {
 	public class MyRole : IdentityRole<string>
 	{
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public string Id { get; set; }
+		// [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		// public override string Id { get; set; }
 
-		public string Name { get; set; }
-		
 		public MyRole() { }
 
-		public MyRole(string id, string name)
+		public MyRole(string name)
 		{
-			this.Id = id;
 			this.Name = name;
+			base.Id = name;
 		} 
 	}
 }

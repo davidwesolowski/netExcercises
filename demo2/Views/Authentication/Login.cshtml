@@ -1,0 +1,16 @@
+@{
+	ViewBag.Title = "Zaloguj się";
+	Layout = "_Layout";
+}
+
+<h2>Zaloguj się: p1@P123</h2>
+
+<form asp-action="Login"
+      asp-controller="Authentication"
+      method="post">
+	
+	<input type="text" name="username" />
+	<input type="password" name="password" />
+	
+	<input type="submit" value="Zaloguj się" />
+</form>

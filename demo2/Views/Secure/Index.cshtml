@@ -1,0 +1,25 @@
+@model List<demo2.Persistance.Entities.Product>
+
+@{
+	ViewBag.Title = "Jakaś moja tabela";
+	Layout = "_Layout";
+}
+
+<h2>Jakaś moja tabela</h2>
+
+<table>
+	<tbody>
+		@foreach (var p in Model)
+		{
+			<tr>
+				<td>@p.Id</td>
+				<td>@p.Name</td>
+				<td>@p.Parameters</td>
+				<td>
+					<a asp-action="Details" asp-route-id="@p.Id">Szczegóły</a>
+					<a asp-action="Delete" asp-route-id="@p.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

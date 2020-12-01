@@ -1,0 +1,30 @@
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+	ViewBag.Title = "title";
+	Layout = "_Layout";
+}
+
+<h2>title</h2>
+
+<form method="post"
+      asp-action="PostCaptchaForm">
+	<input type="hidden" name="captcha" id="captchaInput" />
+	
+	<input type="text" name="name" />
+	<input type="submit" value="Submit" />
+</form>
+
+@section Scripts
+{
+
+	<script src="https://www.google.com/recaptcha/api.js?render=@Configuration["googleReCaptcha:SiteKey"]"></script>
+	<script>
+		grecaptcha.ready(function() {
+                    window.grecaptcha.execute('@Configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+                        $("#captchaInput").val(token);
+                    });
+                });
+		
+	</script>
+}

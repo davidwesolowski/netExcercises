@@ -11,12 +11,20 @@
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include">
+        <e p="AuthenticationController.cs" t="Include" />
         <e p="HomeController.cs" t="Include" />
+        <e p="MyRoleController.cs" t="Include" />
+        <e p="MyUserAccountController.cs" t="Include" />
+        <e p="SecureController.cs" t="Include" />
       </e>
       <e p="demo2.csproj" t="IncludeRecursive" />
       <e p="Migrations" t="Include">
-        <e p="20201124121233_Initial2.cs" t="Include" />
-        <e p="20201124121233_Initial2.Designer.cs" t="Include" />
+        <e p="20201124133003_Cokolwiek.cs" t="Include" />
+        <e p="20201124133003_Cokolwiek.Designer.cs" t="Include" />
+        <e p="20201201105946_KolejnaMigracja.cs" t="Include" />
+        <e p="20201201105946_KolejnaMigracja.Designer.cs" t="Include" />
+        <e p="20201201115434_MojeProdukty.cs" t="Include" />
+        <e p="20201201115434_MojeProdukty.Designer.cs" t="Include" />
         <e p="PrimaryContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
@@ -31,10 +39,12 @@
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
+      <e p="Pages" t="Include" />
       <e p="Persistance" t="Include">
         <e p="Entities" t="Include">
           <e p="MyRole.cs" t="Include" />
           <e p="MyUserAccount.cs" t="Include" />
+          <e p="Product.cs" t="Include" />
         </e>
         <e p="PrimaryContext.cs" t="Include" />
       </e>
@@ -42,6 +52,7 @@
       <e p="Properties" t="Include">
         <e p="launchSettings.json" t="Include" />
       </e>
+      <e p="README.md" t="Include" />
       <e p="Startup.cs" t="Include" />
       <e p="Tools" t="Include">
         <e p="ApplicationSignInManager.cs" t="Include" />
@@ -49,9 +60,30 @@
       <e p="Views" t="Include">
         <e p="_ViewImports.cshtml" t="Include" />
         <e p="_ViewStart.cshtml" t="Include" />
+        <e p="Authentication" t="Include">
+          <e p="Login.cshtml" t="Include" />
+        </e>
         <e p="Home" t="Include">
           <e p="Index.cshtml" t="Include" />
           <e p="Privacy.cshtml" t="Include" />
+        </e>
+        <e p="MyRole" t="Include">
+          <e p="Create.cshtml" t="Include" />
+          <e p="Delete.cshtml" t="Include" />
+          <e p="Details.cshtml" t="Include" />
+          <e p="Edit.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+        </e>
+        <e p="MyUserAccount" t="Include">
+          <e p="Create.cshtml" t="Include" />
+          <e p="Delete.cshtml" t="Include" />
+          <e p="Details.cshtml" t="Include" />
+          <e p="Edit.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+        </e>
+        <e p="Secure" t="Include">
+          <e p="CaptchaFrom.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
         </e>
         <e p="Shared" t="Include">
           <e p="_Layout.cshtml" t="Include" />

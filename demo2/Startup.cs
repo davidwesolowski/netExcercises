@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using demo2.Persistance;
 using demo2.Persistance.Entities;
 using demo2.Tools;
+using GoogleReCaptcha.V3;
+using GoogleReCaptcha.V3.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace demo2
 {
@@ -64,6 +69,37 @@ namespace demo2
                                                     options.AccessDeniedPath = "/nieudane-logowanie";
                                                     options.SlidingExpiration = true;
                                                 });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequirePermissionForDelete", policy => policy.RequireRole("Administrator"));
+            });
+
+            services.AddAuthentication(options =>
+            {
+                // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/logowanie";
+                options.AccessDeniedPath = "/nieudane-logowanie";
+                options.SlidingExpiration = true;
+            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")),
+                    ValidateLifetime = true,
+                    ClockSkew =  TimeSpan.FromMinutes(5)
+                        
+                };
+            });
+
+            services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +132,32 @@ namespace demo2
 
             UpgradeDatabase(app);
             CreateRolesAndUsers(serviceProvider).Wait();
+            CreateProducts(app).Wait();
+        }
+
+        private async Task CreateProducts(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<PrimaryContext>();
+                if (!context.Products.Any())
+                {
+                    List<Product> products = new List<Product>();
+                    products.Add(new Product
+                    {
+                        Name = "MacBook Pro", Parameters = "Apple M1, 8GB RAM, 512 GB SSD",
+                        Price = new decimal(7999.00)
+                    });
+                    products.Add(new Product
+                    {
+                        Name = "MacBook Pro", Parameters = "Apple M1, 8GB RAM, 256 GB SSD",
+                        Price = new decimal(6999.00)
+                    });
+                    await context.Products.AddRangeAsync(products);
+                    await context.SaveChangesAsync();
+                }
+            }
+            
         }
 
         private async Task CreateRolesAndUsers(IServiceProvider serviceProvider)
@@ -109,7 +171,9 @@ namespace demo2
                 var roleExist = await RoleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
                 {
-                    IdentityResult roleResult = await RoleManager.CreateAsync(new MyRole("123", roleName));
+                    MyRole myRole = new MyRole(roleName);
+                    // myRole.Id = "bleble";
+                    IdentityResult roleResult = await RoleManager.CreateAsync(myRole);
                 }
             }
 
@@ -130,6 +194,24 @@ namespace demo2
                     var result = await UserManager.ConfirmEmailAsync(powerUser, code);
                 }
             }
+
+            var defaultUser = new MyUserAccount
+            {
+                UserName =  "default",
+                Email = "xyz@xyz.pl"
+            };
+            var _defaultUser = await UserManager.FindByEmailAsync(defaultUser.Email);
+            if (_defaultUser == null)
+            {
+                var createPowerUser = await UserManager.CreateAsync(defaultUser, userPWD);
+                if (createPowerUser.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(defaultUser, "Klient");
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(defaultUser);
+                    var result = await UserManager.ConfirmEmailAsync(defaultUser, code);
+                }
+            }
+
         }
 
         private void UpgradeDatabase(IApplicationBuilder app)

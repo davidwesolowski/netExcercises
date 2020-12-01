@@ -7,7 +7,7 @@ namespace demo2.Persistance.Entities
 	public class MyUserAccount : IdentityUser<string>
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public string Id { get; set; }
+		public override string Id { get; set; }
 
 		public ICollection<MyRole> Roles { get; set; }
 
