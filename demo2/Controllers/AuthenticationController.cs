@@ -52,13 +52,17 @@ namespace demo2.Controllers
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("/logowanie")]
-		public async Task<IActionResult> Login(string username, string password)
+		public async Task<IActionResult> Login(string username, string password, string returnUrl)
 		{
 			var result = await this._signInManager.PasswordSignInAsync(username, password, isPersistent: true,
 				lockoutOnFailure: false);
 
 			if (result.Succeeded)
 			{
+				if (!string.IsNullOrEmpty(returnUrl))
+				{
+					return Redirect(returnUrl);
+				}
 				return RedirectToAction(controllerName: "Home", actionName: "Index");
 			} else if (result.IsLockedOut)
 			{
@@ -105,23 +109,21 @@ namespace demo2.Controllers
 
 		private string GenerateToken(string username)
 		{
-			var claims = new Claim[]
+			var tokenDescriptor = new SecurityTokenDescriptor
 			{
-				new Claim(ClaimTypes.Name, username),
-				new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds()
-				.ToString()),
-				new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1))
-				.ToUnixTimeMilliseconds().ToString()), 
-			};
-			
-			var token = new JwtSecurityToken(new JwtHeader(
-				new SigningCredentials(
+				Subject = new ClaimsIdentity(new Claim[]
+				{
+					new Claim(ClaimTypes.Name, username), 
+				}),
+				Expires = DateTime.UtcNow.AddDays(1),
+				SigningCredentials = new SigningCredentials(
 					new SymmetricSecurityKey(
 						Encoding.UTF8.GetBytes("1234567890123456")),
-					SecurityAlgorithms.HmacSha256)
-			), new JwtPayload(claims));
-
-			return new JwtSecurityTokenHandler().WriteToken(token);
+					SecurityAlgorithms.HmacSha256Signature)
+			};
+			var tokenHandler = new JwtSecurityTokenHandler();
+			var token = tokenHandler.CreateToken(tokenDescriptor);
+			return tokenHandler.WriteToken(token);
 		}
 	}
 }
