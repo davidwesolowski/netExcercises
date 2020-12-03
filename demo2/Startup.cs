@@ -94,7 +94,7 @@ namespace demo2
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")),
                     ValidateLifetime = true,
-                    ClockSkew =  TimeSpan.FromMinutes(5)
+                    ClockSkew =  TimeSpan.Zero
                         
                 };
             });
